@@ -1,12 +1,13 @@
 var first_name = document.getElementById('fname');
 var last_name = document.getElementById('lname');
 var email = document.getElementById('email');
-var year_of_birth = document.getElementById('year-of-birth');
+var year_of_birth = document.getElementById('yob');
 var password = document.getElementById('password');
 var repeat_password = document.getElementById('repeat-password');
 var salary = document.getElementById('sorted-salaries');
 var nationality = document.getElementById('nationality');
 var palindrome = document.getElementById('palindrome');
+var prime_number = document.getElementById('prime')
 
 var form = document.getElementById('myForm');
 
@@ -48,8 +49,13 @@ form.addEventListener("submit", (e) => {
     console.log(obj);
 
     palindrome.innerHTML = isPalindrome(nationality.value);
+    var age = 2023 - year_of_birth.value
+    var prime = primeNumber(age)
+    prime_number.innerHTML = 'Age = '+age +' '+ prime
     
     })
+
+    
   var salary_prompt
 
     function salaryPrompt(){
@@ -101,6 +107,24 @@ form.addEventListener("submit", (e) => {
             return isPalindrome(x.slice(1, x.length -1 ));
         }
     }
+
+    function primeNumber(x){
+        if (x ==1){
+            return 'this number is not prime'
+        }
+        else if (x == 2) {
+            return 'this number is prime'
+        }
+        else {
+            for (var i = 2; i < x; i++){
+                if (x % i == 0){
+                    return 'this number is not prime'
+                }
+            }
+            return 'this number is prime'
+        }
+    }
+
 
     
     
