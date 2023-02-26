@@ -36,3 +36,9 @@ label{
 /*  */
     
 }
+
+.form-data{
+    margin-top: 40px;
+    margin-left: 40px;
+    align-self: flex-start;
+}

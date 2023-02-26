@@ -4,6 +4,7 @@ var email = document.getElementById('email');
 var year_of_birth = document.getElementById('year-of-birth');
 var password = document.getElementById('password');
 var repeat_password = document.getElementById('repeat-password');
+var salary = document.getElementById('sorted-salaries')
 
 var form = document.getElementById('myForm')
 
@@ -45,7 +46,43 @@ form.addEventListener("submit", (e) => {
     console.log(obj)
     
     })
+  var salary_prompt
 
+    function salaryPrompt(){
+     salary_prompt = prompt("Last 10 salaries - begin from last ex: 10,5,20")
+     var list = salary_prompt.split(",") 
+     sorted_list = mergeSort(list)
+     salary.innerHTML = "Salaries: " + sorted_list
+     console.log(sorted_list)
+    }
+
+
+    function mergeArrays(x, y){
+        array = [];
+        while (x.length && y.length){
+            if (x[0] < y[0]){
+                array.push(x.shift())
+            }
+            else{
+                array.push(y.shift())
+            }
+        }
+        return [...array, ...x, ...y]
+    }
+
+     function mergeSort(x){
+          var mid = x.length /2;
+
+          if(x.length < 2){
+            return x
+          }
+
+          var left_list = x.splice(0,mid)
+          return mergeArrays(mergeSort(left_list), mergeSort(x))
+
+     }
+
+   
 
 
 
