@@ -7,7 +7,9 @@ var repeat_password = document.getElementById('repeat-password');
 var salary = document.getElementById('sorted-salaries');
 var nationality = document.getElementById('nationality');
 var palindrome = document.getElementById('palindrome');
-var prime_number = document.getElementById('prime')
+var prime_number = document.getElementById('prime');
+var course_id = document.getElementById('course-id');
+var course_schedule = document.getElementById('course');
 
 var form = document.getElementById('myForm');
 
@@ -52,7 +54,8 @@ form.addEventListener("submit", (e) => {
     var age = 2023 - year_of_birth.value
     var prime = primeNumber(age)
     prime_number.innerHTML = 'Age = '+age +' '+ prime
-    
+    var javascript = new course(course_id.value,course_schedule.value)
+    console.log(javascript)
     })
 
     
@@ -124,6 +127,15 @@ form.addEventListener("submit", (e) => {
             return 'this number is prime'
         }
     }
+    
+    class course {
+        constructor(id, schedule){
+            this.id = id;
+            this.schedule = schedule
+        }
+    }
+
+    
 
 
     
