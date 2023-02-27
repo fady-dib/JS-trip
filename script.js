@@ -12,6 +12,7 @@ var course_id = document.getElementById('course-id');
 var course_schedule = document.getElementById('course');
 var passport_num = document.getElementById('passport');
 var reverse = document.getElementById('reverse');
+var location = document.getElementById('location');
 
 var form = document.getElementById('myForm');
 
@@ -159,7 +160,46 @@ function searchNumber(x) {
     return array.join('')
 }
 
-console.log(searchNumber('hi0fady9abc5oo7'))
+function getIp(){
+    fetch('https://api.ipify.org/?format = json')
+    .then(results => results.json())
+    .then(data => console.log(data.ip))
+}
+getIp()
+
+// function getLocation(){
+//     if(navigator.geolocation){
+//         navigator.geolocation.getCurrentPosition(showPosition, showError);
+//     }
+//     else{
+//         location.innerHTML = "The browser does not support Geolocation";
+//     }
+// }
+
+// function showPosition(position){
+//     location.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+// }
+
+// function showError(error){
+//     console.log(error)
+//     if (error.PERMISSION_DENIED){
+//         location.innerHTML = "The user have denied the request for Geolocation"
+//     }
+// }
+// getLocation();
+
+const successCallback = (position) => {
+    console.log(position);
+  };
+  
+  const errorCallback = (error) => {
+    console.log(error);
+  };
+  
+  var user_location = navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+  console.log(user_location)
+
+  location.innerHTML = user_location.coords.latitude
 
 
 
