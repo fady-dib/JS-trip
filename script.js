@@ -12,9 +12,9 @@ var course_id = document.getElementById('course-id');
 var course_schedule = document.getElementById('course');
 var passport_num = document.getElementById('passport');
 var reverse = document.getElementById('reverse');
-var location = document.getElementById('location');
+var v_location = document.getElementById('location');
 
-var form = document.getElementById('myForm');
+ var form = document.getElementById('myForm');
 
 
 
@@ -41,7 +41,7 @@ form.addEventListener("submit", (e) => {
 
     }
 
-    // var regex = /(?=.*[A-Z])(?=.*[@#$%^&+!=])/ || regex.test(password)
+    var regex = /(?=.*[A-Z])(?=.*[@#$%^&+!=])/ || regex.test(password)
 
     if (password.value.length < 8) {
         alert('Password should contain 8 characters minimum, one special character minimum, at least one upper case letter');
@@ -59,7 +59,7 @@ form.addEventListener("submit", (e) => {
     prime_number.innerHTML = 'Age = ' + age + ' ' + prime;
     var javascript = new course(course_id.value, course_schedule.value);
     reverse.innerHTML = "reverse number in a string: "+searchNumber(passport_num.value);
-
+return false
 })
 
 
@@ -161,45 +161,37 @@ function searchNumber(x) {
 }
 
 function getIp(){
-    fetch('https://api.ipify.org/?format = json')
+    fetch('https://api.ipify.org/?format=json')
     .then(results => results.json())
     .then(data => console.log(data.ip))
 }
 getIp()
 
-// function getLocation(){
-//     if(navigator.geolocation){
-//         navigator.geolocation.getCurrentPosition(showPosition, showError);
-//     }
-//     else{
-//         location.innerHTML = "The browser does not support Geolocation";
-//     }
-// }
+function getLocation(){
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    }
+    else{
+        v_location.innerHTML = "The browser does not support Geolocation";
+    }
+}
 
-// function showPosition(position){
-//     location.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
-// }
+function showPosition(position){
+    v_location.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+}
 
-// function showError(error){
-//     console.log(error)
-//     if (error.PERMISSION_DENIED){
-//         location.innerHTML = "The user have denied the request for Geolocation"
-//     }
-// }
-// getLocation();
+function showError(error){
+    console.log(error)
+    if (error.PERMISSION_DENIED){
+        v_location.innerHTML = "The user have denied the request for Geolocation"
+    }
+}
+getLocation();
 
-const successCallback = (position) => {
-    console.log(position);
-  };
+
   
-  const errorCallback = (error) => {
-    console.log(error);
-  };
-  
-  var user_location = navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-  console.log(user_location)
 
-  location.innerHTML = user_location.coords.latitude
+  
 
 
 
